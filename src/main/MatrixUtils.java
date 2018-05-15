@@ -14,7 +14,7 @@ public class MatrixUtils {
 		return getMean(getColbyIndex(matrix,index));
 	}
 	// mean of a sub-matrix
-	public static float meanOfSubMatrix(ArrayList<ArrayList<Integer> > I, ArrayList<ArrayList<Integer> > J){
+	public static float meanOfSubMatrix(ArrayList<ArrayList<Integer> > matrix){
 		return 0;
 	}
 	
