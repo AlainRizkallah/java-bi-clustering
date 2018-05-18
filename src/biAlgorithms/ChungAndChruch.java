@@ -1,19 +1,18 @@
 package biAlgorithms;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import main.BiAlgorithm;
 import main.MatrixUtils;
 
 public class ChungAndChruch implements BiAlgorithm{
 
 	@Override
-	public ArrayList<ArrayList<Integer>> execute() {
+	public List<List<Integer>> execute() {
 		
 		return null;
 	}
 
-	private float RSij(ArrayList<ArrayList<Integer>> matrix, int i, int j) {
+	private float RSij(List<List<Integer>> matrix, int i, int j) {
 		int eij = matrix.get(i).get(j);
 		float eIj = MatrixUtils.meanByColumn(matrix, j);
 		float eiJ= MatrixUtils.meanByRow(matrix, i);
@@ -21,9 +20,18 @@ public class ChungAndChruch implements BiAlgorithm{
 		return eij-eIj-eiJ+eIJ;
 	}
 	
-	private float HIJ(ArrayList<ArrayList<Integer>> matrix) {
-		int nbRows = matrix.size();
-		int nbCols = matrix.get(0).size();
-		return 0;
+	private float HIJ(List<List<Integer>> matrix) {
+		int I = matrix.size();
+		int J = matrix.get(0).size();
+		if (I==0||J==0) return 0;
+		
+		float sum=0;
+		for (int i=0;i<I;i++) {
+			for (int j=0;j<J;j++) {
+				float RS = RSij(matrix,i,j);
+				sum+=(RS*RS);
+			}
+		}
+		return sum/(I*J);
 	}
 }

@@ -1,6 +1,9 @@
 package main;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -24,6 +27,7 @@ public class MatrixFactory {
 					       
 					    }
 					    mark=false;
+					    colReader.close();
 					}
 					System.out.println(rows);
 					System.out.println(columns);
@@ -43,8 +47,35 @@ public class MatrixFactory {
 					        }
 					    }
 					}
+					input.close();
 					return G;
 		} 
+	
+	public static List<LinkedList<Integer>> createMatrixListFromFile() throws FileNotFoundException { 
+		Scanner input = new Scanner (new File("src/data.txt"));
+		// pre-read in the number of rows/columns
+		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
+		boolean mark=true;
+		while(input.hasNextLine()){
+			
+			LinkedList<Integer> row = new LinkedList<Integer>();
+		    Scanner colReader = new Scanner(input.nextLine());
+		    while(colReader.hasNextInt())
+		    {
+		    	if(mark)
+		    		row.add(colReader.nextInt());
+		       
+		    }
+		    colReader.close();
+		    mark=false;
+		    matrix.add(row);
+		}
+
+		input.close();
+		
+		
+		return matrix;
+}
 
 
 }

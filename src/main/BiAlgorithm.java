@@ -1,7 +1,7 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface BiAlgorithm {
-public ArrayList<ArrayList<Integer>> execute();
+public List<List<Integer>> execute();
 }

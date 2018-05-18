@@ -1,12 +1,12 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BiCluster {
 
 	private BiAlgorithm algo;
 	private int[][] matrix;
-	ArrayList<ArrayList<Integer>> biCluster;
+	List<List<Integer>> biCluster;
 	
 	public BiCluster(int[][] matrix, BiAlgorithm algo) {
 		this.algo = algo;
@@ -16,7 +16,7 @@ public class BiCluster {
 	public void compute() {
 		biCluster = algo.execute();
 	}
-	public ArrayList<ArrayList<Integer>> getBiCluster(){
+	public List<List<Integer>> getBiCluster(){
 		return biCluster;
 	}
 }

@@ -1,21 +1,26 @@
 package main;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class MatrixUtils {
 	//mean on rows or a given column index
-	public static float meanByRow(ArrayList<ArrayList<Integer> > matrix, int index){
+	public static float meanByRow(List<List<Integer> > matrix, int index){
 		return getMean(getRowbyIndex(matrix,index));
 	}
 	//mean on columns or a given row index
-	public static float meanByColumn(ArrayList<ArrayList<Integer> > matrix, int index){
-		
+	public static float meanByColumn(List<List<Integer> > matrix, int index){
 		return getMean(getColbyIndex(matrix,index));
 	}
 	// mean of a sub-matrix
-	public static float meanOfSubMatrix(ArrayList<ArrayList<Integer> > matrix){
-		return 0;
+	public static float meanOfSubMatrix(List<List<Integer> > matrix){
+		int len = matrix.size();
+		float sum = 0;
+		for (List<Integer> ligne : matrix) {
+			sum+= getMean(ligne);
+		}
+		return sum/len;
 	}
 	
 	public static void printArray(int[][]G) {
@@ -25,20 +30,21 @@ public class MatrixUtils {
 
 	}
 
-	public static ArrayList<Integer> getRowbyIndex(ArrayList<ArrayList<Integer>> matrix, int index){
+	public static List<Integer> getRowbyIndex(List<List<Integer>> matrix, int index){
 		return matrix.get(index);
 	}
-	public static ArrayList<Integer> getColbyIndex(ArrayList<ArrayList<Integer>> matrix, int index){
-		ArrayList<Integer> col=  new ArrayList<Integer>();
-		for (ArrayList<Integer> row:matrix) {
+	public static ArrayList<Integer> getColbyIndex(List<List<Integer>> matrix, int index){
+		List<Integer> col=  new ArrayList<Integer>();
+		for (List<Integer> row:matrix) {
 			col.add(row.get(index));
 		}
 		return null;
 	}
 	
 	
-	public static float getMean(ArrayList<Integer> array) {
+	public static float getMean(List<Integer> array) {
 		int len = array.size();
+		if (len==0) return 0;
 		float sum = 0;
 		for (int e:array) {
 			sum+=e;
@@ -47,6 +53,7 @@ public class MatrixUtils {
 	}
 	public static float getMean(int[] array) {
 		int len =array.length;
+		if (len==0) return 0;
 		float sum = 0;
 		for (int e:array) {
 			sum+=e;
