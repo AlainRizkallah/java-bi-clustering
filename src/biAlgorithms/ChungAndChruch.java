@@ -18,13 +18,17 @@ public class ChungAndChruch implements BiAlgorithm{
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
 		System.out.println(bicluster);
 		
-		while(HIJ(bicluster)<delta) {
-			for(int i=0;i<bicluster.size();i++)
-				d(bicluster,i);
-			for(int j=0;j<bicluster.get(0).size();j++)
-				e(bicluster,j);
+//		while(HIJ(bicluster)<delta) {
+			ArrayList<Float>D= new ArrayList();
+			ArrayList<Float>E= new ArrayList();
 			
-		}
+			for(int i=0;i<bicluster.size();i++) 
+				D.add(d(bicluster,i));
+			for(int j=0;j<bicluster.get(0).size();j++) 
+				E.add(e(bicluster,j));
+				
+			
+//		}
 	
 		return bicluster;
 	}
