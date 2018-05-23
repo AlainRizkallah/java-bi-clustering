@@ -10,10 +10,23 @@ import main.MatrixUtils;
 public class ChungAndChruch implements BiAlgorithm{
 
 	@Override
-	public List<List<Integer>> execute(int[][] G) {
+	public List<List<Integer>> execute(int[][] G, float delta) {
 		MatrixUtils.printArray(G);
+		
 	
-		return null;
+		
+		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
+		System.out.println(bicluster);
+		
+		while(HIJ(bicluster)<delta) {
+			for(int i=0;i<bicluster.size();i++)
+				d(bicluster,i);
+			for(int j=0;j<bicluster.get(0).size();j++)
+				e(bicluster,j);
+			
+		}
+	
+		return bicluster;
 	}
 
 	private float RSij(List<List<Integer>> matrix, int i, int j) {
@@ -37,6 +50,22 @@ public class ChungAndChruch implements BiAlgorithm{
 			}
 		}
 		return sum/(I*J);
+	}
+	private float d(List<List<Integer>> matrix, int i){
+		int Jlen=matrix.get(0).size();
+		float S=0;
+		for (int j:matrix.get(i))
+			S=S+RSij(matrix,i,j);
+		return S/Jlen;
+		
+	}
+	private float e(List<List<Integer>> matrix, int j){
+		int Ilen=matrix.size();
+		float S=0;
+		for (int i:matrix.get(j))
+			S=S+RSij(matrix,i,j);	
+		return S/Ilen;
+		
 	}
 	
 }

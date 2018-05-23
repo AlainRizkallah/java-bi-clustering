@@ -60,5 +60,16 @@ public class MatrixUtils {
 		}
 		return sum/len;
 	}
+	
+	public static List<List<Integer>> twoDArrayToListList(int[][] twoDArray) {
+		List<List<Integer>> list = new ArrayList<>();
+	    for (int[] array : twoDArray) {
+	    	List<Integer>sublist= new ArrayList<>();
+	        for(int x : array)
+	        	sublist.add(x);
+	        list.add(sublist);
+	    }
+	    return list;
+	}
 }
 
