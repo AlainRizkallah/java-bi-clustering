@@ -20,11 +20,5 @@ public class BiCluster {
 	public List<List<Integer>> getBiCluster(){
 		return biCluster;
 	}
-	public int[][] getMatrix() {
-		return matrix;
-	}
-
-	public void setMatrix(int[][] matrix) {
-		this.matrix = matrix;
-	}
+	
 }
