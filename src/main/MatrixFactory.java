@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class MatrixFactory {
 	
 	public static int[][] createMatrixFromFile() throws FileNotFoundException { 
-					Scanner input = new Scanner (new File("src/data.txt"));
+					Scanner input = new Scanner (new File("src/data2.txt"));
 					// pre-read in the number of rows/columns
 					int rows = 0;
 					int columns = 0;
@@ -29,14 +29,14 @@ public class MatrixFactory {
 					    mark=false;
 					    colReader.close();
 					}
-					System.out.println(rows);
-					System.out.println(columns);
+					System.out.println("rows: "+rows);
+					System.out.println("columns: "+columns);
 					int[][] G = new int[rows][columns];
 
 					input.close();
 					
 					// read in the data
-					input = new Scanner(new File("src/data.txt"));
+					input = new Scanner(new File("src/data2.txt"));
 					for(int i = 0; i < rows; ++i)
 					{
 					    for(int j = 0; j < columns; ++j)
@@ -51,31 +51,31 @@ public class MatrixFactory {
 					return G;
 		} 
 	
-	public static List<LinkedList<Integer>> createMatrixListFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data.txt"));
-		// pre-read in the number of rows/columns
-		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
-		boolean mark=true;
-		while(input.hasNextLine()){
-			
-			LinkedList<Integer> row = new LinkedList<Integer>();
-		    Scanner colReader = new Scanner(input.nextLine());
-		    while(colReader.hasNextInt())
-		    {
-		    	if(mark)
-		    		row.add(colReader.nextInt());
-		       
-		    }
-		    colReader.close();
-		    mark=false;
-		    matrix.add(row);
-		}
-
-		input.close();
-		
-		
-		return matrix;
-}
+//	public static List<LinkedList<Integer>> createMatrixListFromFile() throws FileNotFoundException { 
+//		Scanner input = new Scanner (new File("src/data.txt"));
+//		// pre-read in the number of rows/columns
+//		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
+//		boolean mark=true;
+//		while(input.hasNextLine()){
+//			
+//			LinkedList<Integer> row = new LinkedList<Integer>();
+//		    Scanner colReader = new Scanner(input.nextLine());
+//		    while(colReader.hasNextInt())
+//		    {
+//		    	if(mark)
+//		    		row.add(colReader.nextInt());
+//		       
+//		    }
+//		    colReader.close();
+//		    mark=false;
+//		    matrix.add(row);
+//		}
+//
+//		input.close();
+//		
+//		
+//		return matrix;
+//}
 
 
 }

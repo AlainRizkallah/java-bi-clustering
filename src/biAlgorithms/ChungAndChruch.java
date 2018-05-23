@@ -1,14 +1,18 @@
 package biAlgorithms;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import main.BiAlgorithm;
+import main.BiCluster;
 import main.MatrixUtils;
 
 public class ChungAndChruch implements BiAlgorithm{
 
 	@Override
-	public List<List<Integer>> execute() {
-		
+	public List<List<Integer>> execute(int[][] G) {
+		MatrixUtils.printArray(G);
+	
 		return null;
 	}
 
@@ -34,4 +38,5 @@ public class ChungAndChruch implements BiAlgorithm{
 		}
 		return sum/(I*J);
 	}
+	
 }
