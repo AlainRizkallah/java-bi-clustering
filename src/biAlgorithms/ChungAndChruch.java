@@ -2,6 +2,7 @@ package biAlgorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import main.BiAlgorithm;
 import main.BiCluster;
@@ -18,17 +19,25 @@ public class ChungAndChruch implements BiAlgorithm{
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
 //		System.out.println(bicluster);
 		
-//		while(HIJ(bicluster)<delta) {
+	while(HIJ(bicluster)<delta) {
+		System.out.println(HIJ(bicluster));
 			ArrayList<Float>D= new ArrayList<Float>();
 			ArrayList<Float>E= new ArrayList<Float>();
 			
 			for(int i=0;i<bicluster.size();i++) 
 				D.add(d(bicluster,i));
 			for(int j=0;j<bicluster.get(0).size();j++) 
-				E.add(e(bicluster,j));
+				E.add(e(bicluster,j)); 
 				
+			float dmax=Collections.max(D);
+			float emax=Collections.max(E);
+			if(dmax>emax) 
+				bicluster.remove(D.indexOf(dmax));
+			else
+				bicluster.remove(E.indexOf(emax));
 			
-//		}
+		}
+	
 	
 		return bicluster;
 	}
@@ -61,7 +70,6 @@ public class ChungAndChruch implements BiAlgorithm{
 		for (int j=0;j<Jlen;j++)
 			S=S+RSij(matrix,i,j);
 		return S/Jlen;
-		
 	}
 	private float e(List<List<Integer>> matrix, int j){
 		int Ilen=matrix.size();

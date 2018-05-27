@@ -33,12 +33,12 @@ public class MatrixUtils {
 	public static List<Integer> getRowbyIndex(List<List<Integer>> matrix, int index){
 		return matrix.get(index);
 	}
-	public static ArrayList<Integer> getColbyIndex(List<List<Integer>> matrix, int index){
+	public static List<Integer> getColbyIndex(List<List<Integer>> matrix, int index){
 		List<Integer> col=  new ArrayList<Integer>();
 		for (List<Integer> row:matrix) {
 			col.add(row.get(index));
 		}
-		return null;
+		return col;
 	}
 	
 	
