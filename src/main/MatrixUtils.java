@@ -43,6 +43,7 @@ public class MatrixUtils {
 	
 	
 	public static float getMean(List<Integer> array) {
+		if (array==null) return 0;
 		int len = array.size();
 		if (len==0) return 0;
 		float sum = 0;
@@ -71,5 +72,6 @@ public class MatrixUtils {
 	    }
 	    return list;
 	}
+
 }
 

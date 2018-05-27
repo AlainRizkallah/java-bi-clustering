@@ -19,8 +19,8 @@ public class ChungAndChruch implements BiAlgorithm{
 		System.out.println(bicluster);
 		
 //		while(HIJ(bicluster)<delta) {
-			ArrayList<Float>D= new ArrayList();
-			ArrayList<Float>E= new ArrayList();
+			ArrayList<Float>D= new ArrayList<Float>();
+			ArrayList<Float>E= new ArrayList<Float>();
 			
 			for(int i=0;i<bicluster.size();i++) 
 				D.add(d(bicluster,i));
