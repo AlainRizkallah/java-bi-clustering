@@ -16,7 +16,7 @@ public class ChungAndChruch implements BiAlgorithm{
 	
 		
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
-		System.out.println(bicluster);
+//		System.out.println(bicluster);
 		
 //		while(HIJ(bicluster)<delta) {
 			ArrayList<Float>D= new ArrayList<Float>();
@@ -56,9 +56,9 @@ public class ChungAndChruch implements BiAlgorithm{
 		return sum/(I*J);
 	}
 	private float d(List<List<Integer>> matrix, int i){
-		int Jlen=matrix.get(0).size();
+		int Jlen=matrix.get(i).size();
 		float S=0;
-		for (int j:matrix.get(i))
+		for (int j=0;j<Jlen;j++)
 			S=S+RSij(matrix,i,j);
 		return S/Jlen;
 		
@@ -66,7 +66,7 @@ public class ChungAndChruch implements BiAlgorithm{
 	private float e(List<List<Integer>> matrix, int j){
 		int Ilen=matrix.size();
 		float S=0;
-		for (int i:matrix.get(j))
+		for (int i=0;i<Ilen;i++)
 			S=S+RSij(matrix,i,j);	
 		return S/Ilen;
 		
