@@ -34,11 +34,11 @@ public class MatrixUtils {
 		return matrix.get(index);
 	}
 	public static ArrayList<Integer> getColbyIndex(List<List<Integer>> matrix, int index){
-		List<Integer> col=  new ArrayList<Integer>();
+		ArrayList<Integer> col=  new ArrayList<Integer>();
 		for (List<Integer> row:matrix) {
 			col.add(row.get(index));
 		}
-		return null;
+		return col;
 	}
 	
 	
