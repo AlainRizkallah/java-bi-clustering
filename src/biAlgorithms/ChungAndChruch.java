@@ -17,6 +17,7 @@ public class ChungAndChruch implements BiAlgorithm{
 	
 		
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
+		List<List<Integer>> M=MatrixUtils.twoDArrayToListList(G);
 //		System.out.println(bicluster);
 		
 	while(HIJ(bicluster)>3f) {
@@ -40,9 +41,33 @@ public class ChungAndChruch implements BiAlgorithm{
 				MatrixUtils.removeColbyIndex(bicluster, E.indexOf(emax));
 			
 		}
+	System.out.println("==========================ADDITION PHASE===========================");
+	while(HIJ(bicluster)<3f) {
+		System.out.println("HIJ du bicluster: "+HIJ(bicluster));
+		//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+		//		MatrixUtils.printArraylist(bicluster);
+		
+		ArrayList<Float>D= new ArrayList<Float>();
+		ArrayList<Float>E= new ArrayList<Float>();
+		//il faut elever à M les lignes/colone deja existante dans bicluster
+		for(int i=0;i<M.size();i++) 
+			D.add(d(M,i));
+		for(int j=0;j<M.get(0).size();j++)
+			E.add(e(M,j)); 
+			
+		float dmax=Collections.max(D);
+		float emax=Collections.max(E);
+		if(dmax<emax) 
+			//bicluster.add());
+		else
+			// add colone
+		
+			
+	}
 	System.out.println("HIJ du bicluster: "+HIJ(bicluster));
 	System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
 	MatrixUtils.printArraylist(bicluster);
+	
 	
 		return bicluster;
 	}
