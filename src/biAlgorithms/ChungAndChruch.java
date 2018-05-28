@@ -20,13 +20,16 @@ public class ChungAndChruch implements BiAlgorithm{
 //		System.out.println(bicluster);
 		
 	while(HIJ(bicluster)<delta) {
-		System.out.println(HIJ(bicluster));
+		System.out.println("HIJ du bicluster: "+HIJ(bicluster));
+		System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+		MatrixUtils.printArraylist(bicluster);
+		
 			ArrayList<Float>D= new ArrayList<Float>();
 			ArrayList<Float>E= new ArrayList<Float>();
 			
 			for(int i=0;i<bicluster.size();i++) 
 				D.add(d(bicluster,i));
-			for(int j=0;j<bicluster.get(0).size();j++) 
+			for(int j=0;j<bicluster.get(0).size();j++)
 				E.add(e(bicluster,j)); 
 				
 			float dmax=Collections.max(D);
@@ -34,7 +37,7 @@ public class ChungAndChruch implements BiAlgorithm{
 			if(dmax>emax) 
 				bicluster.remove(D.indexOf(dmax));
 			else
-				bicluster.remove(E.indexOf(emax));
+				MatrixUtils.removeColbyIndex(bicluster, E.indexOf(emax));
 			
 		}
 	

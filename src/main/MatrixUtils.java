@@ -29,6 +29,12 @@ public class MatrixUtils {
 		}
 
 	}
+	public static void printArraylist(List<List<Integer>>G) {
+		for (List<Integer>g : G) {
+			System.out.println(g);
+		}
+
+	}
 
 	public static List<Integer> getRowbyIndex(List<List<Integer>> matrix, int index){
 		return matrix.get(index);
@@ -39,6 +45,10 @@ public class MatrixUtils {
 			col.add(row.get(index));
 		}
 		return col;
+	}
+	public static void removeColbyIndex(List<List<Integer>> matrix, int index) {
+		for(int i=0;i<matrix.size();i++)
+		matrix.get(i).remove(index);
 	}
 	
 	
