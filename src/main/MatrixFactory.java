@@ -2,6 +2,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class MatrixFactory {
 
 	
 	public static List<LinkedList<Integer>> createMatrixListFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data2.txt"));
+		Scanner input = new Scanner (new File("src/data.txt"));
 		// pre-read in the number of rows/columns
 		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
 
@@ -34,7 +35,7 @@ public class MatrixFactory {
 }
 	
 	public static int[][] createMatrixFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data2.txt"));
+		Scanner input = new Scanner (new File("src/data.txt"));
 		// pre-read in the number of rows/columns
 		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
 
@@ -62,6 +63,18 @@ public class MatrixFactory {
 		
 		return res;
 }
+	public static int[][] createRandomMatrix()  {
 
+		        int [] [] matrix = new int [25] [25];
+
+		        for (int i=0; i<matrix.length; i++) {
+		            for (int j=0; j<matrix[i].length; j++) {
+		                matrix[i][j] = (int) (Math.random()*10);
+		            }           
+		        }       
+		    return(matrix);
+		
+		
+	}
 
 }

@@ -16,7 +16,7 @@ public class Main {
 
 	BiCluster Bicluster = new BiCluster(G, new ChungAndChruch());
 	Bicluster.compute();
-	System.out.println(Bicluster.getBiCluster());
+	//MatrixUtils.printArray(MatrixFactory.createRandomMatrix());
 	}
 
 }
