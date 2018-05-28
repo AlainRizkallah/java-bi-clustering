@@ -30,12 +30,12 @@ public class MatrixFactory {
 		    matrix.add(row);
 		}
 		input.close();
-		
+		 
 		return matrix;
 }
 	
 	public static int[][] createMatrixFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data.txt"));
+		Scanner input = new Scanner (new File("src/data2.txt"));
 		// pre-read in the number of rows/columns
 		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
 
@@ -65,11 +65,11 @@ public class MatrixFactory {
 }
 	public static int[][] createRandomMatrix()  {
 
-		        int [] [] matrix = new int [25] [25];
+		        int [] [] matrix = new int [100] [100];
 
 		        for (int i=0; i<matrix.length; i++) {
 		            for (int j=0; j<matrix[i].length; j++) {
-		                matrix[i][j] = (int) (Math.random()*10);
+		                matrix[i][j] = (int) (Math.random()*2);
 		            }           
 		        }       
 		    return(matrix);

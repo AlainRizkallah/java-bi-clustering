@@ -19,9 +19,10 @@ public class ChungAndChruch implements BiAlgorithm{
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
 //		System.out.println(bicluster);
 		
-	while(HIJ(bicluster)>300f) {
-		
-		MatrixUtils.printArraylist(bicluster);
+	while(HIJ(bicluster)>3f) {
+		System.out.println("HIJ du bicluster: "+HIJ(bicluster));
+	//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+	//		MatrixUtils.printArraylist(bicluster);
 		
 			ArrayList<Float>D= new ArrayList<Float>();
 			ArrayList<Float>E= new ArrayList<Float>();
@@ -41,6 +42,7 @@ public class ChungAndChruch implements BiAlgorithm{
 		}
 	System.out.println("HIJ du bicluster: "+HIJ(bicluster));
 	System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+	MatrixUtils.printArraylist(bicluster);
 	
 		return bicluster;
 	}
