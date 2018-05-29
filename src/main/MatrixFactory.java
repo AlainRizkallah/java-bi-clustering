@@ -12,8 +12,8 @@ public class MatrixFactory {
 	
 
 	
-	public static List<LinkedList<Integer>> createMatrixListFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data.txt"));
+	public static List<LinkedList<Integer>> createMatrixListFromFile(String path) throws FileNotFoundException { 
+		Scanner input = new Scanner (new File(path));
 		// pre-read in the number of rows/columns
 		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
 
@@ -34,8 +34,8 @@ public class MatrixFactory {
 		return matrix;
 }
 	
-	public static int[][] createMatrixFromFile() throws FileNotFoundException { 
-		Scanner input = new Scanner (new File("src/data2.txt"));
+	public static int[][] createMatrixFromFile(String path) throws FileNotFoundException { 
+		Scanner input = new Scanner (new File(path));
 		// pre-read in the number of rows/columns
 		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
 
