@@ -65,8 +65,8 @@ public class ChungAndChruch implements BiAlgorithm{
 				for(int j :J){
 					E.add(e(bicluster,j,I,J));
 				}
-				float dmax=Collections.max(D);
-				float emax=Collections.max(E);
+				double dmax=Collections.max(D);
+				double emax=Collections.max(E);
 
 
 				if(dmax>emax){
