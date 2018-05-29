@@ -7,43 +7,43 @@ import java.util.List;
 
 public class MatrixUtils {
 	// mean on rows or a given column index
-	public static float meanByRow(List<List<Integer>> matrix, int index) {
+	public static double meanByRow(List<List<Integer>> matrix, int index) {
 		return getMean(getRowbyIndex(matrix, index));
 	}
 
 	// mean on columns or a given row index
-	public static float meanByColumn(List<List<Integer>> matrix, int index) {
+	public static double meanByColumn(List<List<Integer>> matrix, int index) {
 		return getMean(getColbyIndex(matrix, index));
 	}
 
 	// mean of a sub-matrix
-	public static float meanOfSubMatrix(List<List<Integer>> matrix) {
+	public static double meanOfSubMatrix(List<List<Integer>> matrix) {
 		int len = matrix.size();
-		float sum = 0;
+		double sum = 0;
 		for (List<Integer> ligne : matrix) {
 			sum += getMean(ligne);
 		}
 		return sum / len;
 	}
 	
-	public static float meanByRow(List<List<Integer>> matrix,int rowId, List<Integer> J) {
-		float sum = 0;
+	public static double meanByRow(List<List<Integer>> matrix,int rowId, List<Integer> J) {
+		double sum = 0;
 		for (Integer j : J) {
 			sum+=matrix.get(rowId).get(j);
 		}
 		return sum/J.size();
 	}
 	
-	public static float meanByColumn(List<List<Integer>> matrix,int colId, List<Integer> I) {
-		float sum = 0;
+	public static double meanByColumn(List<List<Integer>> matrix,int colId, List<Integer> I) {
+		double sum = 0;
 		for (Integer i : I) {
 			sum+=matrix.get(i).get(colId);
 		}
 		return sum/I.size();
 	}
 	
-	public static float meanOfSubMatrix(List<List<Integer>> matrix,List<Integer> I, List<Integer> J) {
-		float sum = 0;
+	public static double meanOfSubMatrix(List<List<Integer>> matrix,List<Integer> I, List<Integer> J) {
+		double sum = 0;
 		for (Integer colId : J) {
 			for (Integer rowId : J) {
 				sum+=matrix.get(rowId).get(colId);
@@ -85,24 +85,24 @@ public class MatrixUtils {
 			matrix.get(i).remove(index);
 	}
 
-	public static float getMean(List<Integer> array) {
+	public static double getMean(List<Integer> array) {
 		if (array == null)
 			return 0;
 		int len = array.size();
 		if (len == 0)
 			return 0;
-		float sum = 0;
+		double sum = 0;
 		for (int e : array) {
 			sum += e;
 		}
 		return sum / len;
 	}
 
-	public static float getMean(int[] array) {
+	public static double getMean(int[] array) {
 		int len = array.length;
 		if (len == 0)
 			return 0;
-		float sum = 0;
+		double sum = 0;
 		for (int e : array) {
 			sum += e;
 		}

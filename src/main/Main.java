@@ -7,14 +7,14 @@ import biAlgorithms.ChungAndChruch;
 public class Main {
 	
 	static final String UNIFORME_DATA = "src/uniforme.txt";
-	static final String DATA2 = "src/data2.txt";
-	static final String DATASET = "src/data.txt";
+	static final String DATATEST = "src/data2.txt";
+	static final String DATA = "src/data.txt";
 	
 	
 	public static void main(String[] args) throws FileNotFoundException {
 	System.out.println("start");
 	
-	int[][]G=MatrixFactory.createMatrixFromFile(UNIFORME_DATA);
+	int[][]G=MatrixFactory.createMatrixFromFile(DATATEST);
 	System.out.println("Matrix created");
 	MatrixUtils.printArray(G);
 	System.out.println();
