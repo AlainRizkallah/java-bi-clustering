@@ -34,7 +34,7 @@ public class MatrixUtils {
 		return sum/J.size();
 	}
 	
-	public static float meanByCol(List<List<Integer>> matrix,int colId, List<Integer> I) {
+	public static float meanByColumn(List<List<Integer>> matrix,int colId, List<Integer> I) {
 		float sum = 0;
 		for (Integer i : I) {
 			sum+=matrix.get(i).get(colId);
