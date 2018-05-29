@@ -27,7 +27,7 @@ public class ChungAndChruch implements BiAlgorithm{
 		
 //		System.out.println(bicluster);
 		List<ArrayList<Integer>> removed = new ArrayList<ArrayList<Integer>>();
-		delta = 1f;
+		delta = 0.15f;
 		removed = deletionPhase(bicluster,I,J,delta);
 		additionPhase(bicluster,removed,I,J,delta,M);
 		
@@ -66,6 +66,7 @@ public class ChungAndChruch implements BiAlgorithm{
 				}
 				float dmax=Collections.max(D);
 				float emax=Collections.max(E);
+				System.out.println("removed : : : : " + removed);
 				if(dmax>emax){
 					removed.get(0).add(I.get(D.indexOf(dmax)));
 					I.remove(D.indexOf(dmax));					
@@ -75,12 +76,26 @@ public class ChungAndChruch implements BiAlgorithm{
 					J.remove(E.indexOf(emax));
 				}				
 			}
+		
 		return(removed);
 	}
 	
 	private void additionPhase(List<List<Integer>> bicluster, List<ArrayList<Integer>> removed,List<Integer> I,List<Integer> J, float delta, List<List<Integer>> M) {
 		System.out.println("==========================ADDITION PHASE===========================");
+		ArrayList<Integer> Iprime = new ArrayList<Integer>();
+		ArrayList<Integer> Jprime = new ArrayList<Integer>();
+		
+		Iprime.addAll(I);
+		Jprime.addAll(J);
+		
 		while(HIJ(bicluster,I,J)<delta) {
+			I = new ArrayList<Integer>();
+			J = new ArrayList<Integer>();
+			
+			I.addAll(Iprime);
+			J.addAll(Jprime);
+
+			
 			System.out.println("HIJ du bicluster: "+HIJ(bicluster,I,J));
 			//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
 			//		MatrixUtils.printArraylist(bicluster);
@@ -96,12 +111,12 @@ public class ChungAndChruch implements BiAlgorithm{
 			float dmax=Collections.max(D);
 			float emax=Collections.max(E);
 			if(dmax<emax){
-				I.add(removed.get(0).get(D.indexOf(dmax)));
+				Iprime.add(removed.get(0).get(D.indexOf(dmax)));
 				removed.get(0).remove((D.indexOf(dmax)));
 			}
 				
 			else{
-				J.add(removed.get(1).get(E.indexOf(emax)));
+				Jprime.add(removed.get(1).get(E.indexOf(emax)));
 				removed.get(1).remove(E.indexOf(emax));
 			}	
 		}

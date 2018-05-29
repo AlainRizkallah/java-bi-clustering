@@ -65,7 +65,7 @@ public class MatrixFactory {
 }
 	public static int[][] createRandomMatrix()  {
 
-		        int [] [] matrix = new int [100] [100];
+		        int [] [] matrix = new int [50] [50];
 
 		        for (int i=0; i<matrix.length; i++) {
 		            for (int j=0; j<matrix[i].length; j++) {
