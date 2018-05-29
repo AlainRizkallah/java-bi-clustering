@@ -13,100 +13,141 @@ public class ChungAndChruch implements BiAlgorithm{
 	@Override
 	public List<List<Integer>> execute(int[][] G, float delta) {
 		MatrixUtils.printArray(G);
-		
-	
-		
 		List<List<Integer>> bicluster=MatrixUtils.twoDArrayToListList(G);
 		List<List<Integer>> M=MatrixUtils.twoDArrayToListList(G);
-//		System.out.println(bicluster);
 		
-	while(HIJ(bicluster)>3f) {
-		System.out.println("HIJ du bicluster: "+HIJ(bicluster));
-	//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
-	//		MatrixUtils.printArraylist(bicluster);
-		
-			ArrayList<Float>D= new ArrayList<Float>();
-			ArrayList<Float>E= new ArrayList<Float>();
-			
-			for(int i=0;i<bicluster.size();i++) 
-				D.add(d(bicluster,i));
-			for(int j=0;j<bicluster.get(0).size();j++)
-				E.add(e(bicluster,j)); 
-				
-			float dmax=Collections.max(D);
-			float emax=Collections.max(E);
-			if(dmax>emax) 
-				bicluster.remove(D.indexOf(dmax));
-			else
-				MatrixUtils.removeColbyIndex(bicluster, E.indexOf(emax));
-			
+		ArrayList<Integer> I = new ArrayList<Integer>();
+		ArrayList<Integer> J = new ArrayList<Integer>();
+		for (int i =0; i<G.length;i++){
+			I.add(i);
 		}
-	System.out.println("==========================ADDITION PHASE===========================");
-	while(HIJ(bicluster)<3f) {
-		System.out.println("HIJ du bicluster: "+HIJ(bicluster));
-		//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
-		//		MatrixUtils.printArraylist(bicluster);
+		for (int j =0; j<G[0].length;j++){
+			J.add(j);
+		}
 		
-		ArrayList<Float>D= new ArrayList<Float>();
-		ArrayList<Float>E= new ArrayList<Float>();
-		//il faut elever à M les lignes/colone deja existante dans bicluster
-		for(int i=0;i<M.size();i++) 
-			D.add(d(M,i));
-		for(int j=0;j<M.get(0).size();j++)
-			E.add(e(M,j)); 
-			
-		float dmax=Collections.max(D);
-		float emax=Collections.max(E);
-		if(dmax<emax) 
-			//bicluster.add());
-		else
-			// add colone
+//		System.out.println(bicluster);
+		List<ArrayList<Integer>> removed = new ArrayList<ArrayList<Integer>>();
 		
-			
-	}
-	System.out.println("HIJ du bicluster: "+HIJ(bicluster));
+		removed = deletionPhase(bicluster,I,J,delta);
+		additionPhase(bicluster,removed,I,J,delta,M);
+		
+		createCluster(bicluster,I,J);
+	System.out.println("HIJ du bicluster: "+HIJ(bicluster,I,J));
 	System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
 	MatrixUtils.printArraylist(bicluster);
 	
-	
 		return bicluster;
 	}
+	
 
-	private float RSij(List<List<Integer>> matrix, int i, int j) {
+	private List<ArrayList<Integer>> deletionPhase (List<List<Integer>> bicluster , List<Integer> I,List<Integer> J,float delta ){
+		System.out.println("==========================DELETION PHASE===========================");
+		List<ArrayList<Integer>> removed = new ArrayList<ArrayList<Integer>>();
+		removed.add(new ArrayList<Integer>());
+		removed.add(new ArrayList<Integer>());
+
+		while(HIJ(bicluster,I,J)>3f) {
+			System.out.println("HIJ du bicluster: "+HIJ(bicluster,I,J));
+		//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+		//		MatrixUtils.printArraylist(bicluster);
+			
+				ArrayList<Float>D= new ArrayList<Float>();
+				ArrayList<Float>E= new ArrayList<Float>();
+				
+				for(int i : I){
+					D.add(d(bicluster,i,I,J));
+				}
+					
+				for(int j :J){
+					E.add(e(bicluster,j,I,J));
+				}
+				float dmax=Collections.max(D);
+				float emax=Collections.max(E);
+				if(dmax>emax){
+					I.remove(D.indexOf(dmax));
+					removed.get(0).add(D.indexOf(dmax));
+				}	
+				else{
+					J.remove(E.indexOf(emax));
+					removed.get(1).add(E.indexOf(emax));
+				}				
+			}
+		return(removed);
+	}
+	
+	private void additionPhase(List<List<Integer>> bicluster, List<ArrayList<Integer>> removed,List<Integer> I,List<Integer> J, float delta, List<List<Integer>> M) {
+		System.out.println("==========================ADDITION PHASE===========================");
+		while(HIJ(bicluster,I,J)<3f) {
+			System.out.println("HIJ du bicluster: "+HIJ(bicluster,I,J));
+			//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
+			//		MatrixUtils.printArraylist(bicluster);
+			
+			ArrayList<Float>D= new ArrayList<Float>();
+			ArrayList<Float>E= new ArrayList<Float>();
+
+			for(int i : removed.get(0)) 
+				D.add(d(M,i,I,J));
+			for(int j : removed.get(1))
+				E.add(e(M,j,I,J)); 
+				
+			float dmax=Collections.max(D);
+			float emax=Collections.max(E);
+			if(dmax<emax){
+				I.add(removed.get(0).get(D.indexOf(dmax)));
+				removed.get(0).remove((E.indexOf(dmax)));
+			}
+				
+			else{
+				J.add(removed.get(1).get(E.indexOf(dmax)));
+				removed.get(1).remove((E.indexOf(dmax)));
+			}	
+		}
+		
+	}
+
+	private List<ArrayList<Integer>> createCluster(List<List<Integer>> bicluster, List<Integer> I,List<Integer> J) {
+		List<ArrayList<Integer>> cluster = new ArrayList<ArrayList<Integer>>();
+		for(int i = 0 ; i<I.size();i++){
+			cluster.add(new ArrayList<Integer>());
+		}
+		for (int i: I){
+			for (int j: J){
+			cluster.get(i).add(bicluster.get(i).get(j));
+			}
+		}
+		return cluster;
+	}
+	private float RSij(List<List<Integer>> matrix, int i, int j, List<Integer> I,List<Integer> J) {
 		int eij = matrix.get(i).get(j);
-		float eIj = MatrixUtils.meanByColumn(matrix, j);
-		float eiJ= MatrixUtils.meanByRow(matrix, i);
-		float eIJ = MatrixUtils.meanOfSubMatrix(matrix);
+		float eIj = MatrixUtils.meanByColumn(matrix, j,I);
+		float eiJ= MatrixUtils.meanByRow(matrix, i,J);
+		float eIJ = MatrixUtils.meanOfSubMatrix(matrix,I,J);
 		return eij-eIj-eiJ+eIJ;
 	}
 	
-	private float HIJ(List<List<Integer>> matrix) {
-		int I = matrix.size();
-		int J = matrix.get(0).size();
-		if (I==0||J==0) return 0;
+	private float HIJ(List<List<Integer>> matrix,List<Integer> I,List<Integer> J) {
+		if (I.size()==0||J.size()==0) return 0;
 		
 		float sum=0;
-		for (int i=0;i<I;i++) {
-			for (int j=0;j<J;j++) {
-				float RS = RSij(matrix,i,j);
+		for (int i: I) {
+			for (int j: J) {
+				float RS = RSij(matrix,i,j,I,J);
 				sum+=(RS*RS);
 			}
 		}
-		return sum/(I*J);
+		return sum/(I.size()*J.size());
 	}
-	private float d(List<List<Integer>> matrix, int i){
-		int Jlen=matrix.get(i).size();
+	private float d(List<List<Integer>> matrix, int i,List<Integer> I,List<Integer> J){
 		float S=0;
-		for (int j=0;j<Jlen;j++)
-			S=S+RSij(matrix,i,j);
-		return S/Jlen;
+		for (int j : J)
+			S=S+RSij(matrix,i,j,I,J);
+		return S/J.size();
 	}
-	private float e(List<List<Integer>> matrix, int j){
-		int Ilen=matrix.size();
+	private float e(List<List<Integer>> matrix, int j, List<Integer> I,List<Integer> J){
 		float S=0;
-		for (int i=0;i<Ilen;i++)
-			S=S+RSij(matrix,i,j);	
-		return S/Ilen;
+		for (int i:I)
+			S=S+RSij(matrix,i,j,I,J);	
+		return S/I.size();
 		
 	}
 	
