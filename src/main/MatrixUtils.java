@@ -25,14 +25,29 @@ public class MatrixUtils {
 		}
 		return sum / len;
 	}
-
-	public static float meanOfSubMatrix(List<List<Integer>> I, List<List<Integer>> J) {
+	
+	public static float meanByRow(List<List<Integer>> matrix,int rowId, List<Integer> J) {
 		float sum = 0;
-		for (List<Integer> list : J) {
-			sum += getMean(list);
+		for (Integer j : J) {
+			sum+=matrix.get(rowId).get(j);
 		}
-		for (List<Integer> list : I) {
-			sum += getMean(list);
+		return sum/J.size();
+	}
+	
+	public static float meanByCol(List<List<Integer>> matrix,int colId, List<Integer> I) {
+		float sum = 0;
+		for (Integer i : I) {
+			sum+=matrix.get(i).get(colId);
+		}
+		return sum/I.size();
+	}
+	
+	public static float meanOfSubMatrix(List<List<Integer>> matrix,List<Integer> I, List<Integer> J) {
+		float sum = 0;
+		for (Integer colId : J) {
+			for (Integer rowId : J) {
+				sum+=matrix.get(rowId).get(colId);
+			}
 		}
 		return sum/(I.size()*J.size());
 	}
