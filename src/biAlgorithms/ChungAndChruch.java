@@ -27,7 +27,7 @@ public class ChungAndChruch implements BiAlgorithm{
 		
 //		System.out.println(bicluster);
 		List<ArrayList<Integer>> removed = new ArrayList<ArrayList<Integer>>();
-		delta = 0.15f;
+		delta = 200f;
 		removed = deletionPhase(bicluster,I,J,delta);
 		additionPhase(bicluster,removed,I,J,delta,M);
 		
@@ -111,18 +111,32 @@ public class ChungAndChruch implements BiAlgorithm{
 				D.add(d(M,i,I,J));
 			for(int j : removed.get(1))
 				E.add(e(M,j,I,J)); 
-				
-			double dmax=Collections.max(D);
-			double emax=Collections.max(E);
-			if(dmax<emax){
+			System.out.println(E.size());
+			if(E.size()==0){
+				double dmax=Collections.max(D);
 				Iprime.add(removed.get(0).get(D.indexOf(dmax)));
 				removed.get(0).remove((D.indexOf(dmax)));
 			}
-				
-			else{
+			else if(D.size()==0){
+				double emax=Collections.max(E);
 				Jprime.add(removed.get(1).get(E.indexOf(emax)));
 				removed.get(1).remove(E.indexOf(emax));
-			}	
+			}
+			else{
+				double dmax=Collections.max(D);
+				double emax=Collections.max(E);
+				if(dmax<emax){
+					Iprime.add(removed.get(0).get(D.indexOf(dmax)));
+					removed.get(0).remove((D.indexOf(dmax)));
+				}
+					
+				else{
+					Jprime.add(removed.get(1).get(E.indexOf(emax)));
+					removed.get(1).remove(E.indexOf(emax));
+				}
+			}
+			
+				
 		}
 		
 	}

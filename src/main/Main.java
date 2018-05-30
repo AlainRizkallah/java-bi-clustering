@@ -15,8 +15,8 @@ public class Main {
 	System.out.println("start");
 	
 
-//	int[][]G=MatrixFactory.createMatrixFromFile(UNIFORME_DATA);
-	int[][]G=MatrixFactory.createRandomMatrix();
+	int[][]G=MatrixFactory.createMatrixFromFile(DATA);
+//	int[][]G=MatrixFactory.createRandomMatrix();
 
 	System.out.println("Matrix created");
 	MatrixUtils.printArray(G);
