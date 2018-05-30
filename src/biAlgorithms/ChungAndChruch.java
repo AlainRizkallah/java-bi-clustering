@@ -13,16 +13,18 @@ public class ChungAndChruch implements BiAlgorithm{
 	int [][] matrix;
 
 	@Override
-	public List<List<Integer>> execute(int[][] G, double delta) {
-		MatrixUtils.printArraylist(G);
+	public List<List<Integer>> execute(int[][] g, double delta) {
+		MatrixUtils.printArraylist(g);
 //		int[][] matrix=ClusterUtils.twoDArrayToListList(G);
-		matrix = G;
+		this.matrix = g;
 		ArrayList<Integer> I = new ArrayList<Integer>();
 		ArrayList<Integer> J = new ArrayList<Integer>();
-		for (int i =0; i<G.length;i++){
+		
+		
+		for (int i =0; i<matrix.length;i++){
 			I.add(i);
 		}
-		for (int j =0; j<G[0].length;j++){
+		for (int j =0; j<matrix[0].length;j++){
 			J.add(j);
 		}
 		
@@ -33,12 +35,15 @@ public class ChungAndChruch implements BiAlgorithm{
 
 		
 		List<List<Integer>> cluster =ClusterUtils.createCluster(matrix,I,J);
-		
+		System.out.println("==========================   RESULTS    ===========================");
 		System.out.println("Matrix: ");
-	//	MatrixUtils.printArraylist(matrix);
 		MatrixUtils.printArraylist(matrix);
 		System.out.println("le cluster: (taille: "+cluster.size()+"x"+cluster.get(0).size()+")");
 		System.out.println("Delta: "+delta);
+		System.out.println("I: ");
+		System.out.println(I);
+		System.out.println("J: ");
+		System.out.println(J);
 		System.out.println("HIJ du bicluster: "+HIJ(I,J));
 		MatrixUtils.printArraylist(cluster);
 		
@@ -70,7 +75,6 @@ public class ChungAndChruch implements BiAlgorithm{
 				double dmax=Collections.max(D);
 				double emax=Collections.max(E);
 
-
 				if(dmax>emax){
 //					System.out.println("Index max D:  "+D.indexOf(dmax));
 //					System.out.println(dmax);
@@ -91,24 +95,22 @@ public class ChungAndChruch implements BiAlgorithm{
 	
 	private void additionPhase(List<ArrayList<Integer>> removed,List<Integer> I,List<Integer> J, double delta) {
 		System.out.println("==========================ADDITION PHASE===========================");
-		ArrayList<Integer> Iprime = new ArrayList<Integer>();
-		ArrayList<Integer> Jprime = new ArrayList<Integer>();
+		ArrayList<Integer> Iprime = new ArrayList<Integer>(I);
+		ArrayList<Integer> Jprime = new ArrayList<Integer>(J);
 		
-		Iprime.addAll(I);
-		Jprime.addAll(J);
+//		Iprime.addAll(I);
+//		Jprime.addAll(J);
 		double hij = HIJ(Iprime,Jprime);
 		while(hij<delta) {
-			I = new ArrayList<Integer>();
-			J = new ArrayList<Integer>();
+			I = new ArrayList<Integer>(I);
+			J = new ArrayList<Integer>(J);
 			
-			I.addAll(Iprime);
-			J.addAll(Jprime);
+//			I.addAll(Iprime);
+//			J.addAll(Jprime);
 
 			
-			System.out.println("HIJ du bicluster: "+HIJ(I,J));
-			//System.out.println("le bicluster: (taille: "+bicluster.size()+"x"+bicluster.get(0).size()+")");
-			//		MatrixUtils.printArraylist(bicluster);
-			
+			System.out.println("HIJ du bicluster: "+hij);
+		
 			ArrayList<Double>D= new ArrayList<Double>();
 			ArrayList<Double>E= new ArrayList<Double>();
 			if (I.size()==matrix.length && J.size()==matrix[0].length) break;
@@ -172,7 +174,7 @@ public class ChungAndChruch implements BiAlgorithm{
 	private double d(int i,List<Integer> I,List<Integer> J){
 	double S=0;
 		for (int j : J) {
-			S=S+RSij(i,j,I,J);;
+			S=S+Math.pow(RSij(i,j,I,J),2);
 		}
 			
 		return S/J.size();
@@ -180,7 +182,7 @@ public class ChungAndChruch implements BiAlgorithm{
 	private double e(int j, List<Integer> I,List<Integer> J){
 	double S=0;
 		for (int i:I)
-			S=S+RSij(i,j,I,J);	
+			S=S+Math.pow(RSij(i,j,I,J),2);	
 		return S/I.size();
 		
 	}
