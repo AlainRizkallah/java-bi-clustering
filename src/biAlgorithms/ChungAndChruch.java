@@ -27,8 +27,10 @@ public class ChungAndChruch implements BiAlgorithm{
 		}
 		
 		List<ArrayList<Integer>> removed = new ArrayList<ArrayList<Integer>>();
+
 		removed = deletionPhase(I,J,delta);
 		additionPhase(removed,I,J,delta);
+
 		
 		List<List<Integer>> cluster =ClusterUtils.createCluster(matrix,I,J);
 		
@@ -140,6 +142,7 @@ public class ChungAndChruch implements BiAlgorithm{
 			}	
 			
 			hij = HIJ(Iprime,Jprime);
+
 		}
 		
 	}
