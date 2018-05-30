@@ -15,7 +15,7 @@ public class BiCluster {
 	}
 	
 	public void compute() {
-		biCluster = algo.execute(matrix, 273.921f);
+		biCluster = algo.execute(matrix, 300);
 	}
 	public List<List<Integer>> getBiCluster(){
 		return biCluster;

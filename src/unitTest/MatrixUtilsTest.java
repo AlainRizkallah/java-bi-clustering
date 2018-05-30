@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.MatrixUtils;
+import utils.MatrixUtils;
 
 class MatrixUtilsTest {
 
@@ -32,14 +32,6 @@ class MatrixUtilsTest {
 	}
 
 	
-	@Test
-	void calcMean() {
-		List<Integer> list  =  new ArrayList<Integer>();
-		list.add(2);
-		list.add(3);
-		list.add(5);
-		list.add(8);
-		assertEquals(MatrixUtils.getMean(list),4.5);
-	}
+	
 
 }

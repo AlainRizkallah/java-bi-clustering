@@ -12,10 +12,10 @@ public class MatrixFactory {
 	
 
 	
-	public static List<LinkedList<Integer>> createMatrixListFromFile(String path) throws FileNotFoundException { 
+	public static List<List<Integer>> createMatrixListFromFile(String path) throws FileNotFoundException { 
 		Scanner input = new Scanner (new File(path));
 		// pre-read in the number of rows/columns
-		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
+		List<List<Integer>> matrix = new LinkedList<>();
 
 		while(input.hasNextLine()){
 			
@@ -37,7 +37,7 @@ public class MatrixFactory {
 	public static int[][] createMatrixFromFile(String path) throws FileNotFoundException { 
 		Scanner input = new Scanner (new File(path));
 		// pre-read in the number of rows/columns
-		List<LinkedList<Integer>> matrix = new ArrayList<LinkedList<Integer>>();
+		List<LinkedList<Integer>> matrix = new LinkedList<>();
 
 		while(input.hasNextLine()){
 			
@@ -69,7 +69,7 @@ public class MatrixFactory {
 
 		        for (int i=0; i<matrix.length; i++) {
 		            for (int j=0; j<matrix[i].length; j++) {
-		                matrix[i][j] = (int) (Math.random()*2);
+		                matrix[i][j] = (int) (Math.random()*800);
 		            }           
 		        }       
 		    return(matrix);
