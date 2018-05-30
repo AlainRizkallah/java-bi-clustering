@@ -14,7 +14,7 @@ public class ChungAndChruch implements BiAlgorithm{
 
 	@Override
 	public List<List<Integer>> execute(int[][] g, double delta) {
-		MatrixUtils.printArraylist(g);
+//		MatrixUtils.printArraylist(g);
 //		int[][] matrix=ClusterUtils.twoDArrayToListList(G);
 		this.matrix = g;
 		ArrayList<Integer> I = new ArrayList<Integer>();

@@ -25,7 +25,7 @@ public class MatrixFactory {
 		    {	
 		    	int value = colReader.nextInt();
 		    	if (value==-1) {
-		    		value = (int) (Math.random()*800);
+		    		value = (int) Math.round((Math.random()*800));
 		    	}
 		    	row.add(value);
 	    		

@@ -20,7 +20,6 @@ public class Main {
 //	int[][]G=MatrixFactory.createRandomMatrix();
 
 	System.out.println("Matrix created");
-	MatrixUtils.printArraylist(G);
 	System.out.println();
 
 	BiCluster Bicluster = new BiCluster(G, new ChungAndChruch());
