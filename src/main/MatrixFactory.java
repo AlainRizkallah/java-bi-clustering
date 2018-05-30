@@ -22,8 +22,12 @@ public class MatrixFactory {
 			LinkedList<Integer> row = new LinkedList<Integer>();
 		    Scanner colReader = new Scanner(input.nextLine());
 		    while(colReader.hasNextInt())
-		    {
-		    	row.add(colReader.nextInt());
+		    {	
+		    	int value = colReader.nextInt();
+		    	if (value==-1) {
+		    		value = (int) (Math.random()*800);
+		    	}
+		    	row.add(value);
 	    		
 		    }
 		    colReader.close();
@@ -65,7 +69,7 @@ public class MatrixFactory {
 }
 	public static int[][] createRandomMatrix()  {
 
-		        int [] [] matrix = new int [50] [50];
+		        int [] [] matrix = new int [6] [6];
 
 		        for (int i=0; i<matrix.length; i++) {
 		            for (int j=0; j<matrix[i].length; j++) {
